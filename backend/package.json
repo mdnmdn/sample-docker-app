@@ -1,0 +1,27 @@
+{
+  "name": "color-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "run:withmongo": "MONGODB=mongodb://localhost:27017/counter node index.js",
+    "db:runmongodb": "mkdir -p ../data/mongodata;mongod --dbpath ../data/mongodata  --port 27017 --nojournal",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/marco.denittis/sample-kube-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/marco.denittis/sample-kube-node/issues"
+  },
+  "homepage": "https://gitlab.com/marco.denittis/sample-kube-node#README"
+}

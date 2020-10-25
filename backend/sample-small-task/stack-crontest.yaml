@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  cron2:
+    #image: mdnmdn/sample-cmd:v1
+    image: busybox
+    command: date
+    deploy:
+      mode: replicated
+      replicas: 0
+      restart_policy:
+        condition: none
+      labels:
+        swarm.cronjob.enable: "true"
+        #swarm.cronjob.schedule: "1/20 * * * *"
+        #swarm.cronjob.schedule: "1 */1 * * * *"
+        swarm.cronjob.schedule: "0 * * * * *"
+        swarm.cronjob.skip-running: "true"
+
+

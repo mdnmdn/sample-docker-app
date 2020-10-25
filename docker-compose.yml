@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+  mongo:
+    image: mongo:4.4.1
+    ports:
+      - '27015:27017'
+    #volumes:
+    #  - ../data/docker-mongo:/data/db
+    command:  --nojournal
+  backend:
+    image: node:14.5-alpine    
+    environment:
+      MONGODB: mongodb://mongo:27017/test_db
+      PORT: 3000
+      NODE_ENV: development
+      mode: development
+      ENABLE_CORS: 'true'
+    ports:
+      - 3040:3000
+      - 9229:9229
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app
+    #command: sh -c "cd app && npm start"
+    command: sh -c "cd app && npm i && npx nodemon --inspect=0.0.0.0:9229 --ext js,json,env,gql server.js"    
+    deploy:
+      restart_policy:
+        condition: on-failure
+  frontend:
+    image: node:14.5-alpine
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/app
+    ports:
+      - 3041:3000
+    depends_on:
+      - backend
+    command: sh -c "cd app && npm i && npm start"

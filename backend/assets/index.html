@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Sample APP BE</title>
+    <style>
+      .App {
+        text-align: center;
+      }
+
+      .App-logo {
+        height: 40vmin;
+      }
+
+      .App-header {
+        background-color: #eee;
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: #326ce5;
+      }
+
+      .App-link {
+        color: #09d3ac;
+      }
+    </style>
+  </head>
+  <body style="margin: 0">
+    <div id="root">
+      <div class="App">
+        <header class="App-header">
+          <p>- sample BE -</p>
+          <ul>
+            <li><a href="/api/v1/status">/api/v1/status</a></li>
+            <li><a href="/api/v1/mongo">/api/v1/mongo</a></li>
+            <li><a href="/api/v1/data">/api/v1/data</a></li>
+          </ul>
+        </header>
+      </div>
+    </div>
+  </body>
+</html>
