@@ -100,9 +100,23 @@ app.use('*', (req, res) => {
     res.send(getInfo(req))
 })
 
+// simulate failure
+let failureRatio = parseInt(process.env.FAILURE_RATIO) || 0;
+if (isNaN(failureRatio)) failureRatio = 0;
+if (failureRatio > 0) {
+  console.log(`Failure ration: ${failureRatio}%`);
+}
+
+
 const doThings = () => {
-    console.log(`Doing some important task id: ${Math.floor(Math.random() * 100000)}`);
-    setTimeout(doThings, 1000 + Math.random() * 5000);
+  const randomResult = Math.round(Math.random() * 100, 0);
+  console.log(`Doing some important task id: ${Math.floor(Math.random() * 100000)}  (${randomResult}/${failureRatio})`);
+
+  if (randomResult < failureRatio) {
+    console.warn(`ups, failing... )`);
+    process.exit(1);
+  }  
+  setTimeout(doThings, 1000 + Math.random() * 5000);
 };
 doThings();
 
