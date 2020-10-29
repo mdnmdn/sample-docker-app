@@ -1,6 +1,7 @@
 const os = require('os');
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
 
 const package = require('./package');
 const { count } = require('./mongolib');
@@ -33,11 +34,26 @@ const getInfo = req => ({
 })
 
 
+app.use('*', async (req, res, next) =>  {
+    console.log(`${req.method}: ${req.originalUrl}`);
+    next();
+});
 
 app.use('/favicon.ico', async (req, res) =>  { res.send(null) });
 
 app.get('/', async (req, res) =>  {
-    res.sendFile(`${__dirname}/assets/index.html`)
+    fs.readFile(`${__dirname}/assets/index.html`,'utf-8', (err, contents) => {
+        const html = contents
+            .replace('%title%', process.env.TITLE || 'Hello from k8s')
+            .replace('%hostname%', os.hostname());
+        res.send(html);
+    })
+    //res.sendFile(`${__dirname}/assets/index.html`)
+});
+
+
+app.get('/logo.png', async (req, res) =>  {
+    res.sendFile(`${__dirname}/assets/kube-logo.png`);
 });
 
 app.get('/api/v1/status', async (req, res) =>  {
@@ -83,6 +99,12 @@ app.get('/api/v1/failure', async (req, res) =>  {
 app.use('*', (req, res) => {
     res.send(getInfo(req))
 })
+
+const doThings = () => {
+    console.log(`Doing some important task id: ${Math.floor(Math.random() * 100000)}`);
+    setTimeout(doThings, 1000 + Math.random() * 5000);
+};
+doThings();
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}!`)

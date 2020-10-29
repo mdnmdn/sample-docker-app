@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+  namespace: my-app
+spec:
+  containers:
+    - name: hello-world
+      image: mdnmdn/k8s-hello:latest
+      ports:
+      - containerPort: 3000
+        protocol: TCP
+        name: node-http
+
+
+
+# kubectl apply -f pod-hello-world.yaml 
+# kubectl delete -f pod-hello-world.yaml
+
+# kubectl port-forward -n my-app pod/hello-world 3003:3000

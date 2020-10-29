@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-app
+  namespace: my-app
+spec:
+  #replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world-app
+  template:
+    metadata:
+      labels:
+        app: hello-world-app
+    spec:      
+      containers:
+      - name: hello-world
+        image: mdnmdn/k8s-hello:v1
+        #imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+          name: node-http
+
+
+# kubectl apply -f deployment-hello-world-app.yaml    
+# kubectl delete -f deployment-hello-world-app.yaml   
+
+# kubectl port-forward -n my-app deployment/hello-world-app 3003:3000

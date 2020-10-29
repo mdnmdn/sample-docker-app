@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-app
+
+
+# kubectl apply -f namespace-myapp.yaml    
+# kubectl delete -f namespace-myapp.yaml    

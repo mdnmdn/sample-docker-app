@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-svc
+  namespace: my-app
+spec:
+  selector:
+    app: hello-world-app
+  ports:
+  - port: 80
+    targetPort: 3000
+
+
+# kubectl apply -f service-hello-world.yaml 
+# kubectl delete -f service-hello-world.yaml
+
+# kubectl port-forward -n my-app svc/hello-world 3003:80

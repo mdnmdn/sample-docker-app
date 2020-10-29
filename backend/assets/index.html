@@ -6,27 +6,43 @@
     <meta name="theme-color" content="#000000" />
     <title>Sample APP BE</title>
     <style>
-      .App {
-        text-align: center;
-      }
+      
 
       .App-logo {
         height: 40vmin;
+
       }
 
-      .App-header {
-        background-color: #eee;
-        min-height: 50vh;
+      .App-logo img {
+        height: 40vmin;
+        float: left;
+        
+      }
+
+      .App {
+        background-color: #ffffff;
+        min-height: 100vh;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 2em;
+        justify-content: left;        
         font-size: calc(10px + 2vmin);
         color: #326ce5;
       }
 
-      .App-link {
-        color: #09d3ac;
+      .App-side {
+        margin-left: 2em;
+        padding-top: 2em;
+      }
+
+      ul{
+        list-style: none;
+        padding: 0;
+      }
+
+      a {
+        font-size: .8em;
       }
     </style>
   </head>
@@ -34,13 +50,20 @@
     <div id="root">
       <div class="App">
         <header class="App-header">
-          <p>- sample BE -</p>
-          <ul>
-            <li><a href="/api/v1/status">/api/v1/status</a></li>
-            <li><a href="/api/v1/mongo">/api/v1/mongo</a></li>
-            <li><a href="/api/v1/data">/api/v1/data</a></li>
-          </ul>
+          <div class="App-logo"><image src="./logo.png"></image></div>
+          
         </header>
+        <article>
+          <div class="App-side">
+            <h1>%title%</h1>
+            <p>%hostname%</p>
+            <ul>
+              <li><a href="/api/v1/status">/api/v1/status</a></li>
+              <li><a href="/api/v1/mongo">/api/v1/mongo</a></li>
+              <li><a href="/api/v1/data">/api/v1/data</a></li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </body>
